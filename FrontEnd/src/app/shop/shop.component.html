@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="text-center">
+        <input type="text" placeholder="search..." [(ngModel)]="look" (keyup)="lookingFor()" class="mx-auto mt-3"><br>
+
+        <div class="form=check form-check-inline mt-3" *ngFor="let elem of tabCheck">
+            <input type='{{elem.type}}' value='{{elem.value}}' value="{{elem.value}}" name="bt" id="{{elem.id}}" (change)="onChange($event)">
+            <label for="{{elem.id}}">{{elem.value}}</label>
+        </div>
+        <div class="row mt-3">
+            <div class="col" *ngFor='let element of progLook'>
+                <div class="card" style="width: 18rem;">
+                    <img src="{{element.image}}" class="card-img-top" alt="image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{element.name}}</h5>
+                        <p class="card-text">5/{{element.rating}}</p>
+                        <p class="card-text">{{element.prix}}</p>
+                        <a href="#" class="btn btn-primary" [routerLink]="['/shop/' , element.id]">see more</a>
+                        <button class="btn btn-outline-success" (click)="cart(element)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
