@@ -1,0 +1,22 @@
+.card {
+    border-radius: 12px;
+    border: 1px solid black;
+}
+
+button {
+    font-weight: 500;
+    border-radius: 12px;
+}
+
+#para1,
+#para2 {
+    font-weight: 600;
+    padding: 15px;
+}
+
+#second {
+    margin-top: 15px;
+    border: 1px solid black;
+    padding: 15px;
+    background-color: lightblue;
+}

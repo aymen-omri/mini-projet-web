@@ -1,0 +1,28 @@
+<div>
+    <div class="text-center">
+        <h1>Online Health Community</h1>
+        <p>Taking Our Health in Our Hands</p>
+    </div>
+
+    <div class="container my-5">
+        <div class="card">
+
+            <div class="card-body">
+
+                <label for="name"> <p id="para1" class="card-text">Your name : </p></label>
+                <input type="text" [(ngModel)]="mypub.name" class="form-control" id="name" placeholder="put you name here">
+                <label for="msg"> <p id="para2"  class="card-text">Say something here :</p></label>
+                <textarea class="form-control" [(ngModel)]="mypub.content" id="msg" placeholder="write anything you want here..."></textarea>
+                <button class="btn btn-outline-primary mt-3" (click)="postPubs()">Publish</button>
+
+
+            </div>
+
+        </div>
+
+        <div id="second" *ngFor='let pub of publication'>
+
+
+            <p>{{pub.name}} <br> {{pub.content}} </p>
+            <p> {{pub.rep}} </p>
+        </div>

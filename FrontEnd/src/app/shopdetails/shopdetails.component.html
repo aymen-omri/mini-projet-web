@@ -1,0 +1,27 @@
+<div class="container">
+
+    <div class="row mt-3">
+        <div class="col" *ngIf="programs">
+            <div class="card h-100 rounded">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">Program Name : {{programs.name}}</h5>
+                        <h5 class="card-title">Difficulty Level : {{programs.level}}</h5>
+
+                    </div>
+                    <div class="col">
+                        <p class="card-text">{{programs.desc}}</p>
+                    </div>
+                    <div class="col">
+                        <img [src]="programs.image" class="card-img-top" alt="picture">
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" [routerLink]="['/shop']">back to list</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
