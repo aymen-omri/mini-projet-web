@@ -1,0 +1,11 @@
+<div class="container my-5">
+    <div class="class alert alert-success mt-3" *ngIf="show" (click)="show = !show">{{msg}}</div>
+    <h1 class="text-dark mt-3">Your new personal data:</h1>
+    <label for="nm" class="form-label mt-3">Your new name</label>
+    <input type="text" placeholder="new name here..." id="nm" class="form-control mt-3" [(ngModel)]="newName">
+    <label for="ne" class="form-label mt-3">Your new Email:</label>
+    <input type="email" placeholder="new email..." id="ne" class="form-control mt-3" [(ngModel)]="newEmail">
+    <label for="np" class="form-label mt-3">Your new Password:</label>
+    <input type="text" placeholder="new Password.." id="np" class="form-control mt-3" [(ngModel)]="newPass">
+    <button type="submit" class="btn btn-outline-primary mt-3" (click)="updatePersonalData()">Update</button>
+</div>

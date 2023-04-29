@@ -12,10 +12,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/aboutus">About us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/cart">cart<div style="font-size:10px;" class="badge bg-danger">{{allPrograms}}</div></a>
 
-                </li>
 
 
 
@@ -25,10 +22,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/shop">Shop</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">cart<div style="font-size:10px;" class="badge bg-danger">{{allPrograms}}</div></a>
+
+                </li>
+                <li class="nav-item dropdown" *ngIf="!nothere">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{yourName}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><button class="btn btn-dark form-control" [routerLink]="['/update']">Update</button></li>
+                        <li><button class="btn btn-dark form-control" (click)="logout()">logout</button></li>
+
+                    </ul>
+                </li>
+                <button id="b1" class="btn btn-outline-success" *ngIf="nothere"><a href="/register">Join</a></button>
+
+
 
 
             </ul>
-            <button id="b1" class="btn btn-outline-success"><a href="/register">Join</a></button>
+
 
         </div>
     </div>

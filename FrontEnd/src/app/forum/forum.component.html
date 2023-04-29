@@ -1,28 +1,40 @@
-<div>
+<div *ngIf="loggedIn">
     <div class="text-center">
         <h1>Online Health Community</h1>
         <p>Taking Our Health in Our Hands</p>
     </div>
 
     <div class="container my-5">
-        <div class="card">
+        <div id="second" *ngFor='let pub of tabPub'>
+
+
+            <p>#{{pub.name}} <br> {{pub.content}} </p>
+        </div>
+        <div class="card my-5" id="mine">
 
             <div class="card-body">
 
-                <label for="name"> <p id="para1" class="card-text">Your name : </p></label>
-                <input type="text" [(ngModel)]="mypub.name" class="form-control" id="name" placeholder="put you name here">
                 <label for="msg"> <p id="para2"  class="card-text">Say something here :</p></label>
-                <textarea class="form-control" [(ngModel)]="mypub.content" id="msg" placeholder="write anything you want here..."></textarea>
-                <button class="btn btn-outline-primary mt-3" (click)="postPubs()">Publish</button>
+                <textarea class="form-control" [(ngModel)]="content" id="msg" placeholder="write anything you want here..."></textarea>
+                <button class="btn btn-outline-primary mt-3" (click)="postPub()">Publish</button>
 
 
             </div>
 
         </div>
+    </div>
+</div>
 
-        <div id="second" *ngFor='let pub of publication'>
+<ng-container *ngIf="notLoggedIn">
+    <div class="container">
+        <div class="card" id="yours">
+            <h5 class="card-title">Hello there
 
-
-            <p>{{pub.name}} <br> {{pub.content}} </p>
-            <p> {{pub.rep}} </p>
+            </h5>
         </div>
+        <div class="center">
+            <h4>login to see the forum</h4>
+            <button class="btn btn-primary" [routerLink]="['/login']">login now ! </button>
+        </div>
+    </div>
+</ng-container>

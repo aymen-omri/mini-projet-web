@@ -9,40 +9,26 @@ import { ShareService } from '../share.service';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(private service : LoginService , private share : ShareService ) { }
+  constructor(private service : LoginService ) { }
 
   ngOnInit(): void {
-    this.userData()
-    this.cart
+    this.progData();
+
   }
 
   cartTab : any[] = []
 
-cart(item : any){
- 
-  this.cartTab.push(item)
-  this.share.update(this.cartTab)
-  console.log(this.cartTab)
-
-}
 
 
 
 prog : any[] = []
   progFilter : any[] =[] 
 
-
-  
-  
-  userData(){
-    this.service.sendData2().subscribe((res:any) => {
-      console.log(res , 'results =>') ;
-   this.progLook =  this.progFilter = this.prog = res.data ;
-  
+  progData(){
+    this.service.getAllPrograms().subscribe((res : any)=>{
+      this.progLook = this.progFilter = this.prog = res.data ; 
     })
   }
-
-
 
 
 tabCheck = [
@@ -85,4 +71,18 @@ lookingFor(){
 }
 
 
+cart : any[] = [] ; 
+
+addToCart(item : any){
+  this.cart.push(item) ; 
+  var obj = JSON.stringify(this.cart);
+  console.log(obj);
+  localStorage.setItem('cart' , obj) ; 
+
 }
+ 
+  
+
+}
+
+

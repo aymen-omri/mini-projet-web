@@ -15,7 +15,7 @@ export class ShopdetailsComponent implements OnInit {
   ngOnInit(): void {
     const id : number = Number(this.route.snapshot.paramMap.get('id'));
     
-    this.service.sendData2().subscribe((prog: any) => {
+    this.service.getAllPrograms().subscribe((prog: any) => {
       this.programs =  prog.data.find((program : any) => 
       program.id == id
       ) 

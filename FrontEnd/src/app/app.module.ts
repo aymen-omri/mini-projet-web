@@ -20,6 +20,9 @@ import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 import { ShareService } from './share.service';
 import { CartdetailsComponent } from './cartdetails/cartdetails.component';
+import { FooterComponent } from './footer/footer.component';
+import { UpdateComponent } from './update/update.component';
+import { PayementComponent } from './payement/payement.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { CartdetailsComponent } from './cartdetails/cartdetails.component';
     CartComponent,
     HeaderComponent,
     CartdetailsComponent,
+    FooterComponent,
+    UpdateComponent,
+    PayementComponent,
     
   ],
   imports: [
@@ -47,14 +53,11 @@ import { CartdetailsComponent } from './cartdetails/cartdetails.component';
       {path : 'shop' , component : ShopComponent },
       {path : 'aboutus' , component : AboutusComponent },
       {path: 'shop/:id' , component: ShopdetailsComponent },
-      {path: 'cart' , component: CartComponent }
-      
-
-      
-
-
-
-    ]),
+      {path: 'cart' , component: CartComponent },
+      {path: 'update' , component: UpdateComponent },
+      {path: 'payement' , component: PayementComponent},
+      {path: '**' , redirectTo: '', pathMatch:'full' }
+      ]),
     ReactiveFormsModule,
     FormsModule,
     BrowserModule

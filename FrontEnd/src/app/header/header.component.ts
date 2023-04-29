@@ -15,6 +15,27 @@ export class HeaderComponent implements OnInit {
     this.cartservice.getPrograms().subscribe(res =>{
       this.allPrograms = res.length ; 
     })
+
+    this.isLoggedIn();
   }
+
+  nothere = true ; 
+  user = localStorage.getItem('token') ; 
+  yourName : any ;
+  
+  isLoggedIn(){
+    if(this.user){
+      this.yourName = JSON.parse(this.user)[0].name ; 
+      this.nothere = false ; 
+
+    }
+  }
+
+  logout(){
+    localStorage.removeItem('token') ; 
+    window.location.replace('/') ; 
+  }
+
+
 
 }

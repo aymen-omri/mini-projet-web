@@ -14,7 +14,6 @@ import { LoginService } from '../login.service';
 export class ForumComponent implements OnInit {
 
   constructor(
-    private cookie:CookieService , 
     private router :Router , 
     private service : LoginService 
     
@@ -24,99 +23,69 @@ export class ForumComponent implements OnInit {
     data : any
 
   ngOnInit(): void {
-    this.verifLogedIn()
-    this.getPubs()
+    this.getPub();
+    this.verif();
     
 }
 
+user = localStorage.getItem('token');
+objUser : any ; 
 
-publication : any[] = []
-getPubs(){
-  this.service.getPub().subscribe((data : any) => {
-    this.publication = data
+objPub = {
+  'name' : '' ,
+  'content' : '' , 
+  'iduser' : ''
 
-  })
 }
 
-mypub : any  = {
-  name:'' , 
-  content:''
-}
+content : any ; 
 
-postPubs(){
-  this.service.postPub(this.mypub).subscribe((data : any) => {
-    console.log(data)
-    this.publication = [data, ...this.publication]
-    this.resetPub()
+postPub(){
+  if(this.user){
+    this.objUser = JSON.parse(this.user) ; 
+    this.objPub ={
+      'name' : this.objUser[0].name , 
+      'content' : this.content ,
+      'iduser' : this.objUser[0].id
+    } 
+    this.service.postForumPub(this.objPub).subscribe((res:any) => {
+      console.log(res) ;
+      this.getPub() ; 
+    })
+     
+  } 
+  else {
+    alert("empty localstorage !!!");
 
-
-  })
-}
-resetPub(){
- this.mypub = {
-    name: '' , 
-    content : ''
   }
 }
 
 
+tabPub : any[] = [] ; 
+
+getPub(){
+  this.service.getForumPub().subscribe((res: any) => {
+    this.tabPub = res.data ;
+      
+    })
+ }
+
+ notLoggedIn = true ; 
+ loggedIn = false ; 
+ 
+ verif(){
+   if(this.user){
+     this.notLoggedIn = false ; 
+     this.loggedIn = true ; 
+
+   }
+ }
 
 
 
 
 
 
-
-
-
-   verif:boolean = false ;
-
-  verifLogedIn(){
-    const cookie = this.cookie.get("value")
-    if(cookie == "ok"){
-      this.verif = true
-    } else {
-      alert("you have too login")
-    }
-    
-  }
-
-  getRoute(){
-    if (!this.verif){
-      this.router.navigate(['/login'])
-
-    } else {
-      return
-    }
-  }
-
-  
-    //getForumPub(){
-   // this.service.getPub().subscribe((rep : any) => {
-     // console.log(rep)
-      //this.publication = rep.data
-    //})
-  //}
-
-userForm = new FormGroup({
-    'name' : new FormControl('' , Validators.required) , 
-    'content' : new FormControl('' , Validators.required)
-  })
-//pubSubmit(){
-    //if(this.userForm.valid){
-      //this.service.sendPub(this.userForm.value).subscribe((res) => {
-        //console.log(res)
-        //this.publication = [res, ...this.publication]
-
-      //})
-      //this.userForm.reset()
-
-    //}
-    //else{
-      //alert("something went wrong")
-
-    //}
-  //}
 
   
   

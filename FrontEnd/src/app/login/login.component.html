@@ -1,5 +1,8 @@
 <div id="for">
-    <form [formGroup]="userForm" (ngSubmit)="userSubmit()">
+    <div class="container">
+        <div class="alert alert-danger" *ngIf="show">{{message}}</div>
+    </div>
+    <form [formGroup]="userForm" (ngSubmit)="postData()">
         <h1>
             Login Here</h1>
         <div>
@@ -9,7 +12,7 @@
             <input type="password" class="form-control" formControlName="password" placeholder="password">
         </div>
         <div class="my-5">
-            <button class="btn btn-outline-success">Create</button>
+            <button class="btn btn-outline-success">Login</button>
         </div>
         <p> You don't have an account ? <a href="/register">Sign up here</a></p>
     </form>

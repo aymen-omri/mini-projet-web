@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl , FormGroup , ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -9,27 +11,37 @@ import { LoginService } from '../login.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private serv : LoginService) { }
+  constructor(private serv : LoginService , private router : Router) { }
 
   ngOnInit(): void {
     console.log(this.userForme)
   }
 
   userForme = new FormGroup({
-    'nom' : new FormControl('' , Validators.required), 
+    'name' : new FormControl('' , Validators.required), 
     'email' : new FormControl('' , Validators.required),
     'password' : new FormControl('' , Validators.required)
 
   })
+  err :any ; 
+  show = false ; 
 
   userRegister(){
     if(this.userForme.valid){
-      this.serv.registerData(this.userForme.value).subscribe(res => console.log(res))
+        this.serv.Registration(this.userForme.value).pipe(first()).subscribe((data:any) => {
+            console.log(data) ;
+            if(data.message=='success'){
+            this.router.navigate(['/login']);
+            }else {
+              this.err = data.message;
+              this.show=true ; 
 
-
-    }else{
-      console.log('why god why')
-    }
+            }
+        })
+     } 
+     else {
+         alert("something went wrong")
+     }
   }
 
 }

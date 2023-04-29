@@ -12,14 +12,11 @@ export class HomeComponent implements OnInit {
   constructor(private serv : LoginService) { }
 
   ngOnInit(): void {
-    this.userData()
    
 
   }
 
-  userData(){
-    this.serv.sendData2().subscribe(res => console.log(res))
-  }
+ 
 
   
 

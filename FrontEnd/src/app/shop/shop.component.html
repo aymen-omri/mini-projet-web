@@ -13,9 +13,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{element.name}}</h5>
                         <p class="card-text">5/{{element.rating}}</p>
-                        <p class="card-text">{{element.prix}}</p>
+                        <p class="card-text">{{element.prix}} dt</p>
                         <a href="#" class="btn btn-primary" [routerLink]="['/shop/' , element.id]">see more</a>
-                        <button class="btn btn-outline-success" (click)="cart(element)"></button>
+                        <button class="btn btn-outline-success" (click)="addToCart(element)">add to cart</button>
                     </div>
                 </div>
             </div>
